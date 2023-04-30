@@ -89,7 +89,6 @@ public class Main {
 
                 Model model = new Model(3); // creating new Desk
                 Controls controls = new Controls(model, permanentData); // creating new controls
-                System.out.println(permanentData.getTempMaxScore());
 
                 createGamePanel(startingPanel, controls); // creating frame
 
@@ -125,13 +124,15 @@ public class Main {
                         " the 3rd - hard, and the last one - auto play." + "\n\n6) The game was made on JAVA language, and " +
                         "using JAVA Gui." + "\n\n Unfortunately, i could not realize the timer, however i included features like " +
                         "making " +
-                        "\n random movement, smart move, and undo move." + "\n\n Hope you will enjoy playing the game:)");
+                        "\n random movement, smart move, and undo move." + "\n\n7) When playing bot level, when the game" +
+                        "is finished you need to press either 'Enter' or " +
+                        "\nany arrow button to score to be saved." + "\n\n Hope you will enjoy playing the game:)");
                 Font font = new Font("Arial", Font.PLAIN, 18);
                 area.setFont(font);
                 JFrame instructionsFrame = new JFrame();
 
                 instructionsFrame.setTitle("Instructions");
-                instructionsFrame.setSize(730, 450);
+                instructionsFrame.setSize(730, 550);
 
                 instructionsFrame.add(area);
                 instructionsFrame.setVisible(true);
