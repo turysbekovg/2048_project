@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class Model {
-    private static int FIELD_WIDTH = 0;  // matrix 4x4
+    private int FIELD_WIDTH;  // matrix 4x4
     private Tile[][] gameTiles; // desk 4x4
+
+    private int MAX_SCORE = 0;
 
     int score = 0; // score
     int maxTile = 2; // initially maxTile is 2
@@ -10,11 +12,31 @@ public class Model {
     private Stack<Tile[][]> previousStates = new Stack<>(); // to keep count of previous states
     private Stack<Integer> previousScores = new Stack<>(); // to keep count of previous scores
 
-    private boolean isSaveNeeded = true; // to check if save is neeede
+    private boolean isSaveNeeded = true; // to check if save is neeeded
+
+    public int getFieldWidth(){
+        return FIELD_WIDTH;
+    }
+
+    public int getMaxScore(){
+        return MAX_SCORE;
+    }
+
+    public void setMaxScore(int score){
+        MAX_SCORE = score;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    public void setScore(int userScore){
+        score = userScore;
+    }
 
     public Model(int FIELD_WIDTH){ // creating new model by resetting game tiles
-        resetGameTiles();
         this.FIELD_WIDTH = FIELD_WIDTH;
+        resetGameTiles();
     }
 
     private List<Tile> getEmptyTiles() {  // to get empty tiles
@@ -109,11 +131,11 @@ public class Model {
         isSaveNeeded = true;
     }
 
-    private void rotateGameTilesBy90Degrees(){
+    private void rotateGame(){
         Tile[][] newTile = new Tile[FIELD_WIDTH][FIELD_WIDTH];
         for(int i = 0; i<FIELD_WIDTH; i++){
             for(int j = 0; j<FIELD_WIDTH; j++){
-                newTile[j][3-i] = gameTiles[i][j];
+                newTile[j][FIELD_WIDTH-1-i] = gameTiles[i][j];
             }
         }
         gameTiles = newTile;
@@ -121,29 +143,29 @@ public class Model {
 
     void down() {
         saveState(gameTiles);
-        rotateGameTilesBy90Degrees();
+        rotateGame();
         left();
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
+        rotateGame();
+        rotateGame();
+        rotateGame();
     }
 
     void right(){
         saveState(gameTiles);
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
+        rotateGame();
+        rotateGame();
         left();
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
+        rotateGame();
+        rotateGame();
     }
 
     void up(){
         saveState(gameTiles);
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
-        rotateGameTilesBy90Degrees();
+        rotateGame();
+        rotateGame();
+        rotateGame();
         left();
-        rotateGameTilesBy90Degrees();
+        rotateGame();
     }
 
     public Tile[][] getGameTiles(){
@@ -216,6 +238,7 @@ public class Model {
     }
 
     boolean hasBoardChanged (){
+
         for(int i =0; i<FIELD_WIDTH; i++){
             for(int j =0; j<FIELD_WIDTH; j++){
                 if(gameTiles[i][j].value != previousStates.peek()[i][j].value){
@@ -229,13 +252,14 @@ public class Model {
     MoveEfficiency getMoveEfficiency (Move move) {
         move.move();
 
-        int emptyTiles = -1;
         int newScore = 0;
+        int emptyTiles = -1;
 
         if(hasBoardChanged()){
             emptyTiles = getEmptyTiles().size();
             newScore = score;
         }
+
         MoveEfficiency moveEfficiency = new MoveEfficiency(emptyTiles, newScore, move);
         rollBack();
 
@@ -248,11 +272,10 @@ public class Model {
         priorityQueue.offer(getMoveEfficiency(this::up));
         priorityQueue.offer(getMoveEfficiency(this::right));
         priorityQueue.offer(getMoveEfficiency(this::down));
-
         priorityQueue.peek().getMove().move();
     }
 
-    void botMove(){
+    void botMove() {
         while(canMove() == true){
             randomMove();
         }

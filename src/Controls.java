@@ -9,19 +9,15 @@ public class Controls extends KeyAdapter {
 
     public Controls(Model model){ // constructor
         this.model = model;
-        view = new View(this);
+        view = new View(this, model);
     }
 
     Tile[][] getGameTiles(){ // to get Tiles
         return model.getGameTiles();
     }
 
-    int getScore(){ // to get score of the user
-        return model.score;
-    }
-
     void resetGame(){  // resets the game
-        model.score = 0;
+        model.setScore(0);
         model.maxTile = 2;
         view.isGameLost = false;
         view.isGameWon = false;
@@ -76,6 +72,7 @@ public class Controls extends KeyAdapter {
     }
 
     public View getView() {
+        view.setTileSizes(model.getFieldWidth());
         return view;
     }
 }

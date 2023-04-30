@@ -6,17 +6,32 @@ import java.awt.event.ActionListener;
 public class View extends JPanel {
     private static final Color BG_COLOR = new Color(0xbbada0);
     private static final String FONT_NAME = "Arial";
-    private static final int TILE_SIZE = 96;
-    private static final int TILE_MARGIN = 10;
+    private static int TILE_SIZE = 0; // tile size
+    private static int TILE_MARGIN = 0; // distance between tiles
 
     private Controls controls;
+    private Model model;
     boolean isGameWon = false;
     boolean isGameLost = false;
 
-    public View(Controls controls){
+    public View(Controls controls, Model model){
         setFocusable(true);
+        this.model = model;
         this.controls=controls;
         addKeyListener(controls);
+    }
+
+    public void setTileSizes(int x){ // 6X6 - > 60X10 ; 4x4 -> 85x20; 3x3 -> 114x25
+        if(x == 4) {
+            TILE_SIZE = 85;
+            TILE_MARGIN = 20;
+        } else if(x == 6) {
+            TILE_SIZE = 60;
+            TILE_MARGIN = 10;
+        } else {
+            TILE_SIZE = 114;
+            TILE_MARGIN = 25;
+        }
     }
 
     @Override
@@ -25,19 +40,27 @@ public class View extends JPanel {
         g.setColor(BG_COLOR);
         g.fillRect(0,0,this.getSize().width, this.getSize().height); // заполняет прямоугольник
 
-        for(int x = 0; x<4; x++) {
-            for(int y = 0; y<4; y++) {
+        for(int x = 0; x<model.getFieldWidth(); x++) {
+            for(int y = 0; y<model.getFieldWidth(); y++) {
                 drawTile(g, controls.getGameTiles()[y][x], x, y);
             }
         }
 
-        g.drawString("Score: " + controls.getScore(), 200, 465); // draws "Score" string
+        g.drawString("Score: " + model.getScore(), 160, 565); // draws "Score" string
 
         // if you lose/win window will show up with certain message
         if(isGameWon){
-            JOptionPane.showMessageDialog(this, "You have won!"); // if you win then
+            JOptionPane.showMessageDialog(this, "You have won! " + " Your score is: "+ model.score); // if you win then
+            if(model.getMaxScore()<model.score){
+                model.setMaxScore(model.score);
+            }
+            JOptionPane.showMessageDialog(this, "Max Score is: " + model.getMaxScore());
         } else if(isGameLost){
-            JOptionPane.showMessageDialog(this, "You have lost :("); // if you lose then
+            JOptionPane.showMessageDialog(this, "You have lost :( "  + " Your score is: "+ model.score); // if you lose then
+            if(model.getMaxScore()<model.score){
+                model.setMaxScore(model.score);
+            }
+            JOptionPane.showMessageDialog(this, "Max Score is: " + model.getMaxScore());
         }
     }
 
