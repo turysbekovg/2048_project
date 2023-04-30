@@ -7,9 +7,9 @@ public class Controls extends KeyAdapter {
 
     private static final int WINNING_TILE = 2048;
 
-    public Controls(Model model){ // constructor
+    public Controls(Model model, PermanentData permanentData){ // constructor
         this.model = model;
-        view = new View(this, model);
+        view = new View(this, model, permanentData);
     }
 
     Tile[][] getGameTiles(){ // to get Tiles

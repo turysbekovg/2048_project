@@ -14,6 +14,11 @@ public class Model {
 
     private boolean isSaveNeeded = true; // to check if save is neeeded
 
+    public Model(int FIELD_WIDTH){ // creating new model by resetting game tiles
+        this.FIELD_WIDTH = FIELD_WIDTH;
+        resetGameTiles();
+    }
+
     public int getFieldWidth(){
         return FIELD_WIDTH;
     }
@@ -32,11 +37,6 @@ public class Model {
 
     public void setScore(int userScore){
         score = userScore;
-    }
-
-    public Model(int FIELD_WIDTH){ // creating new model by resetting game tiles
-        this.FIELD_WIDTH = FIELD_WIDTH;
-        resetGameTiles();
     }
 
     private List<Tile> getEmptyTiles() {  // to get empty tiles
