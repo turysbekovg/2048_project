@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.Period;
 
 public class Main {
 
@@ -67,7 +66,7 @@ public class Main {
 
             }
         };
-            easyPlay.addActionListener(listener1);
+        easyPlay.addActionListener(listener1);
 
         // MEDIUM LEVEL
         ActionListener listener2 = new ActionListener() { // метод вызывается когда кнопка нажата

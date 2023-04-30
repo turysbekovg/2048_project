@@ -65,7 +65,7 @@ public class View extends JPanel {
             }
             permanentData.saveTempMaxScore(model.getMaxScore());
             JOptionPane.showMessageDialog(this, "You have lost :( "  + " Your score is: "+ model.score); // if you lose then
-            JOptionPane.showMessageDialog(this, "Close the window and try again :)" + model.getMaxScore());
+            JOptionPane.showMessageDialog(this, "Close the window and try again :)");
         }
     }
 
