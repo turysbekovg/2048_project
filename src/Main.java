@@ -51,11 +51,6 @@ public class Main {
         JButton hardPlay = createButton(startingPanel, "Hard-level", 350);
         JButton botPlay = createButton(startingPanel, "Bot-play", 450);
 
-//        JLabel nameOfGame = new JLabel("Galymzhan");
-//        nameOfGame.setForeground(Color.black);
-//        nameOfGame.setLocation(170, 100);
-//        startingPanel.add(nameOfGame);
-
 
         // EASY LEVEL
         ActionListener listener1 = new ActionListener() { // метод вызывается когда кнопка нажата
