@@ -48,8 +48,8 @@ public class View extends JPanel {
             }
         }
 
-        g.drawString("Score: " + model.getScore(), 160, 500); // draws "Score" string
-        g.drawString("MaxScore: " + permanentData.getTempMaxScore(), 120, 580); // draws "Score" string
+        g.drawString("Score: " + model.getScore(), 150, 500); // draws "Score" string
+        g.drawString("MaxScore: " + permanentData.getTempMaxScore(), 110, 580); // draws "Score" string
 
         // if you lose/win window will show up with certain message
         if(isGameWon){
@@ -65,7 +65,7 @@ public class View extends JPanel {
             }
             permanentData.saveTempMaxScore(model.getMaxScore());
             JOptionPane.showMessageDialog(this, "You have lost :( "  + " Your score is: "+ model.score); // if you lose then
-            JOptionPane.showMessageDialog(this, "Close the window and try again :)" + model.getMaxScore());
+            JOptionPane.showMessageDialog(this, "Close the window and try again :)");
         }
     }
 

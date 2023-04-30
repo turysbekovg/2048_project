@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.Period;
 
 public class Main {
 
@@ -48,8 +47,8 @@ public class Main {
 
         JButton easyPlay = createButton(startingPanel, "Easy-Level", 60);
         JButton mediumPlay = createButton(startingPanel, "Medium-Level", 160);
-        JButton hardPlay = createButton(startingPanel, "Hard-level", 260);
-        JButton botPlay = createButton(startingPanel, "Bot-play", 360);
+        JButton hardPlay = createButton(startingPanel, "Hard-Level", 260);
+        JButton botPlay = createButton(startingPanel, "Bot-Play Level", 360);
         JButton instructionsButton = createButton(startingPanel, "Instructions", 460);
 
         PermanentData permanentData = new PermanentData();
@@ -67,7 +66,7 @@ public class Main {
 
             }
         };
-            easyPlay.addActionListener(listener1);
+        easyPlay.addActionListener(listener1);
 
         // MEDIUM LEVEL
         ActionListener listener2 = new ActionListener() { // метод вызывается когда кнопка нажата
@@ -120,14 +119,19 @@ public class Main {
         ActionListener listener5 = new ActionListener() { // метод вызывается когда кнопка нажата
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTextArea area = new JTextArea("1) 'R' -> Random move" + "\n2) 'A' -> Smart move" + "\n3) 'Z' -> " +
-                        "undo move" + "\n4) You can press 'BOT_PLAYS LEVEL' button to see the resulting board");
+                JTextArea area = new JTextArea("1) 'R' -> Random move." + "\n\n2) 'A' -> Smart move." + "\n\n3) 'Z' -> " +
+                        "undo move." + "\n\n4) You can press 'BOT-PLAYS LEVEL' button to see the resulting board." +
+                        "\n\n5) The are 4 variants of how you can play the 2048 game: \n\nThe 1st one - easy mode, the 2nd - medium," +
+                        " the 3rd - hard, and the last one - auto play." + "\n\n6) The game was made on JAVA language, and " +
+                        "using JAVA Gui." + "\n\n Unfortunately, i could not realize the timer, however i included features like " +
+                        "making " +
+                        "\n random movement, smart move, and undo move." + "\n\n Hope you will enjoy playing the game:)");
                 Font font = new Font("Arial", Font.PLAIN, 18);
                 area.setFont(font);
                 JFrame instructionsFrame = new JFrame();
 
                 instructionsFrame.setTitle("Instructions");
-                instructionsFrame.setSize(600, 150);
+                instructionsFrame.setSize(730, 450);
 
                 instructionsFrame.add(area);
                 instructionsFrame.setVisible(true);
