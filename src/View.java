@@ -7,8 +7,6 @@ public class View extends JPanel {
     private static int TILE_SIZE = 0; // tile size
     private static int TILE_MARGIN = 0; // distance between tiles
     private PermanentData permanentData;
-
-
     private Controls controls;
     private Model model;
     boolean isGameWon = false;
@@ -53,17 +51,17 @@ public class View extends JPanel {
 
         // if you lose/win window will show up with certain message
         if(isGameWon){
-            if(model.getMaxScore()<model.score){
-                model.setMaxScore(model.score);
+            if(permanentData.getTempMaxScore()<model.score){
+                permanentData.saveTempMaxScore(model.score);
             }
-            permanentData.saveTempMaxScore(model.getMaxScore());
+
             JOptionPane.showMessageDialog(this, "You have won! " + " Your score is: "+ model.score); // if you win then
             JOptionPane.showMessageDialog(this, "Close the window and try again :)");
         } else if(isGameLost){
-            if(model.getMaxScore()<model.score){
-                model.setMaxScore(model.score);
+            if(permanentData.getTempMaxScore()<model.score){
+                permanentData.saveTempMaxScore(model.score);
             }
-            permanentData.saveTempMaxScore(model.getMaxScore());
+
             JOptionPane.showMessageDialog(this, "You have lost :( "  + " Your score is: "+ model.score); // if you lose then
             JOptionPane.showMessageDialog(this, "Close the window and try again :)");
         }

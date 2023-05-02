@@ -91,7 +91,6 @@ public class Main {
                 Controls controls = new Controls(model, permanentData); // creating new controls
 
                 createGamePanel(startingPanel, controls); // creating frame
-
             }
         };
         hardPlay.addActionListener(listener3);

@@ -4,8 +4,6 @@ public class Model {
     private int FIELD_WIDTH;  // matrix 4x4
     private Tile[][] gameTiles; // desk 4x4
 
-    private int MAX_SCORE = 0;
-
     int score = 0; // score
     int maxTile = 2; // initially maxTile is 2
 
@@ -21,14 +19,6 @@ public class Model {
 
     public int getFieldWidth(){
         return FIELD_WIDTH;
-    }
-
-    public int getMaxScore(){
-        return MAX_SCORE;
-    }
-
-    public void setMaxScore(int score){
-        MAX_SCORE = score;
     }
 
     public int getScore(){
