@@ -47,7 +47,7 @@ public class View extends JPanel {
         }
 
         g.drawString("Score: " + model.getScore(), 150, 500); // draws "Score" string
-        g.drawString("MaxScore: " + permanentData.getTempMaxScore(), 110, 580); // draws "Score" string
+        g.drawString("MaxScore: " + permanentData.getTempMaxScore(), 110, 580); // draws "MaxScore" string
 
         // if you lose/win window will show up with certain message
         if(isGameWon){
