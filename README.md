@@ -1,6 +1,6 @@
 # 2048_project
-THIS PROJECT IS AIMED TO IMITATE FAMOUS 2048 GAME
-IT CONSISTS of 4 LEVELS: HARD, MEDIUM, EASY, BOT-LEVEL
+This project is aimed to imitate famous 2048 game.
+Consists of 4 levels: HARD, MEDIUM, EASY, BOT-LEVEL.
 INSTRUCTIONS:
 1) 'R' -> Random move.
 
